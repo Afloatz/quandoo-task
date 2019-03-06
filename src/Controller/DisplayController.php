@@ -9,8 +9,9 @@
 namespace App\Controller;
 
 
+use GuzzleHttp\Client;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\Routing\Annotation\Route;
 
 class DisplayController extends AbstractController
@@ -20,16 +21,35 @@ class DisplayController extends AbstractController
      */
     public function list()
     {
-        return $this->render('Display/list.html.twig');
+        try {
+            $client = new Client();
+            $response = $client->get('https://api.github.com/orgs/quandoo/repos', ['verify' => false]);
+            $contents = json_decode($response->getBody()->getContents());
+        } catch (\Exception $exception) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->render('Display/list.html.twig', [
+            'contents' => $contents
+        ]);
     }
 
     /**
-     * @Route("/repository/{slug}", name="display_show")
+     * @Route("/repository/{name}", name="display_show")
      */
-    public function show($slug)
+    public function show($name)
     {
+        try {
+            $client = new Client();
+            $response = $client->get('https://api.github.com/repos/quandoo/'.$name, ['verify' => false]);
+            $content = json_decode($response->getBody()->getContents());
+        } catch (\Exception $exception) {
+            throw new NotFoundHttpException();
+        }
+
+
         return $this->render('display/show.html.twig', [
-                'title' => ucwords(str_replace('-', ' ', $slug)),
+                'content' => $content
             ]);
     }
 
