@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f6c634071ec7ff31da9b3ebaf01f8145",
+    "content-hash": "db8eecd84077a39d494609ba3f51a7e9",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -5012,7 +5012,7 @@
         },
         {
             "name": "symfony/twig-bundle",
-            "version": "v4.2.3",
+            "version": "v4.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/twig-bundle.git",
