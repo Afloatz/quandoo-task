@@ -1,13 +1,29 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Read{% endblock %}
+{% block title %}Detail view{% endblock %}
 
 {% block body %}
-
-
-
-    <div>
-        <p>{{ content.description }}</p>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h4>{{ content.name }}</h4>
+            </div>
+            <div class="col-md-12">
+                <p>{{ content.description }}</p>
+            </div>
+            <div class="col-md-12">
+                <p>Created at: {{ content.created_at }}</p>
+            </div>
+            <div class="col-md-12">
+                <p>Updated at: {{ content.updated_at }}</p>
+            </div>
+            <div class="col-md-12">
+                <p>Pushed at: {{ content.pushed_at }}</p>
+            </div>
+            <div class="col-md-12">
+                <p>Language: {{ content.language }}</p>
+            </div>
+        </div>
     </div>
 
 {% endblock %}
